@@ -1,0 +1,110 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Login | Indian Voting System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100">
+
+    <!-- Navigation Bar with Tricolor -->
+    <nav class="bg-gradient-to-r from-orange-500 via-white to-green-500 text-gray-900 py-4 px-6 shadow-md border-b-4 border-blue-600">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-2">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="flage" class="w-10">
+                <h1 class="text-2xl font-bold">Voting System</h1>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Login Box -->
+     
+    <div class="flex justify-center items-center h-screen">
+        
+        <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md border-t-4 border-orange-500">
+            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkirDWt_0QjKJqHVkPSiPR5EnJp_AZNS337J8FZopaCTwCaVcULZgOVfSeHGAriVRKkEY&usqp=CAU" 
+            alt="Ashoka Chakra" class="w-20 mx-auto mb-4">
+            <h2 class="text-2xl font-bold text-center mb-4 text-blue-700">Voter Login</h2>
+
+            <!-- Flash Messages -->
+            {% with messages = get_flashed_messages(with_categories=true) %}
+                {% if messages %}
+                    {% for category, message in messages %}
+                        <p class="text-center text-red-600 font-semibold">{{ message }}</p>
+                    {% endfor %}
+                {% endif %}
+            {% endwith %}
+
+            <!-- Login Form -->
+            <form action="{{ url_for('voter_bp.login') }}" method="POST" class="space-y-4">
+                <input type="email" name="email" placeholder="Enter your Email" required 
+                    class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+                
+                <input type="password" name="password" placeholder="Enter your Password" required 
+                    class="w-full px-4 py-2 border rounded-md focus:ring-2 focus:ring-blue-500">
+                
+                <button type="submit" 
+                    class="w-full bg-blue-600 text-white py-2 rounded-md hover:bg-blue-700">
+                    Login
+                </button>
+            </form>
+
+            <p class="text-center mt-4 font-semibold">OR</p>
+
+            <!-- Face Recognition Login Button -->
+            <button onclick="captureFaceLogin()" 
+                class="w-full bg-green-600 text-white py-2 rounded-md hover:bg-green-700">
+                Login with Face Recognition
+            </button>
+        </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>&copy; 2025 Indian Voting System. All rights reserved.</p>
+    </footer>
+
+    <!-- Face Recognition Script -->
+    <script>
+        function captureFaceLogin() {
+            navigator.mediaDevices.getUserMedia({ video: true })
+                .then(stream => {
+                    let video = document.createElement("video");
+                    video.srcObject = stream;
+                    video.play();
+                    setTimeout(() => {
+                        let canvas = document.createElement("canvas");
+                        canvas.width = video.videoWidth;
+                        canvas.height = video.videoHeight;
+                        let ctx = canvas.getContext("2d");
+                        ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
+                        let faceData = canvas.toDataURL("image/jpeg");
+
+                        fetch("{{ url_for('voter_bp.face_login') }}", {
+                            method: "POST",
+                            headers: { "Content-Type": "application/json" },
+                            body: JSON.stringify({ face_data: faceData })
+                        })
+                        .then(response => response.json())
+                        .then(data => {
+                            if (data.message) {
+                                alert(data.message);
+                                window.location.href = "{{ url_for('voter_bp.dashboard') }}";
+                            } else {
+                                alert(data.error);
+                            }
+                        })
+                        .catch(error => console.error(error));
+                    }, 1000);
+                })
+                .catch(error => alert("Camera access denied!"));
+        }
+    </script>
+
+</body>
+</html>
+

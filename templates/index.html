@@ -1,0 +1,43 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Indian Secure Voting System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-orange-500 to-green-500">
+
+    <div class="bg-white shadow-lg rounded-lg p-8 w-full max-w-md text-center border-t-4 border-orange-600">
+        
+        <!-- Updated Icon (Ashoka Chakra) -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSNuafQhxGXB80z5uZWAsQsLDw717nooR8VJg&s" 
+            alt="Ashoka Chakra" class="w-20 mx-auto mb-4">
+
+        <!-- Heading -->
+        <h1 class="text-2xl font-bold text-gray-800 font-serif">Indian Secure Voting System</h1>
+        <p class="text-gray-600 mt-2">A safe and modern way to cast your vote using facial recognition.</p>
+
+        <!-- Voter & Admin Buttons -->
+        <div class="mt-6 space-y-4">
+            <button onclick="window.location.href='/voter/register'"
+                class="w-full bg-green-700 text-white py-3 rounded-lg text-lg font-semibold hover:bg-green-800 transition">
+                👤 Voter
+            </button>
+            <button onclick="window.location.href='/admin/login'"  
+                class="w-full bg-orange-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-orange-700 transition">
+                🔑 Admin
+            </button>
+        </div>
+
+        <!-- Feature Description -->
+        <div class="mt-6 text-gray-500 text-sm">
+            <p>📌 <strong>Voter:</strong> Register, log in, and cast your vote securely.</p>
+            <p>📌 <strong>Admin:</strong> Manage elections, verify voters, and monitor results.</p>
+        </div>
+    </div>
+
+</body>
+</html>

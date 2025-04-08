@@ -1,0 +1,64 @@
+
+
+
+ <!DOCTYPE html>
+ <html lang="en">
+ <head>
+     <meta charset="UTF-8">
+     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+     <title>Add Candidate | Indian Voting System</title>
+     <script src="https://cdn.tailwindcss.com"></script>
+ </head>
+ <body class="bg-gray-100">
+ 
+     <!-- Navigation Bar with Tricolor -->
+     <nav class="bg-gradient-to-r from-orange-500 via-white to-green-500 text-gray-900 py-4 px-6 shadow-md border-b-4 border-blue-600">
+         <div class="max-w-6xl mx-auto flex justify-between items-center">
+             <div class="flex items-center space-x-2">
+                 <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="India Flag" class="w-10">
+                 <h1 class="text-2xl font-bold">Indian Voting System</h1>
+             </div>
+         </div>
+     </nav>
+ 
+     <!-- Add Candidate Form -->
+     <div class="flex justify-center items-center min-h-screen">
+         <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-lg border-t-4 border-orange-500">
+             <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcRkirDWt_0QjKJqHVkPSiPR5EnJp_AZNS337J8FZopaCTwCaVcULZgOVfSeHGAriVRKkEY&usqp=CAU" 
+                  alt="Ashoka Chakra" class="w-16 mx-auto mb-4">
+             
+             <h2 class="text-3xl font-semibold text-center text-blue-700 mb-6">Add Candidate</h2>
+ 
+             <form method="POST" class="space-y-6">
+                 <div>
+                     <label for="name" class="block text-lg font-medium text-gray-700 mb-2">Candidate Name</label>
+                     <input type="text" id="name" name="name" required 
+                         class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-400">
+                 </div>
+ 
+                 <div>
+                     <label for="party" class="block text-lg font-medium text-gray-700 mb-2">Candidate Party</label>
+                     <input type="text" id="party" name="party" required 
+                         class="w-full px-4 py-3 border rounded-lg focus:ring-2 focus:ring-blue-400">
+                 </div>
+ 
+                 <button type="submit" 
+                     class="w-full bg-green-600 text-white px-6 py-3 rounded-lg hover:bg-green-700 transition">
+                     Add Candidate
+                 </button>
+             </form>
+ 
+             <div class="mt-4 text-center">
+                 <a href="/admin/dashboard" class="text-orange-600 font-semibold hover:underline">⬅️ Back to Dashboard</a>
+             </div>
+         </div>
+     </div>
+ 
+     <!-- Footer -->
+     <footer class="bg-gray-800 text-white text-center py-4 mt-6">
+         <p>&copy; 2025 Indian Voting System. All rights reserved.</p>
+     </footer>
+ 
+ </body>
+ </html>
+ 

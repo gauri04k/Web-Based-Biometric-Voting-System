@@ -1,0 +1,110 @@
+
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Voter Dashboard</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 h-screen flex flex-col">
+
+    <!-- Navbar -->
+    <nav class="bg-gradient-to-r from-orange-500 via-white to-green-500 text-gray-900 py-4 px-6 shadow-md border-b-4 border-blue-600">
+        <div class="max-w-6xl mx-auto flex justify-between items-center">
+            <div class="flex items-center space-x-4">
+                <img src="https://upload.wikimedia.org/wikipedia/en/4/41/Flag_of_India.svg" alt="Indian Flag" class="w-10 h-6">
+                <h1 class="text-2xl font-bold">Face Voting System</h1>
+            </div>
+            <div class="flex items-center space-x-4">
+                <!-- Show voter image (clickable) -->
+                {% if face_image %}
+                <img src="data:image/jpeg;base64,{{ face_image }}" 
+                     alt="Voter Image" 
+                     class="w-10 h-10 rounded-full border-2 border-white cursor-pointer"
+                     onclick="showImageModal('data:image/jpeg;base64,{{ face_image }}')">
+                {% else %}
+                <img src="{{ url_for('static', filename='default-avatar.png') }}" 
+                     alt="Default Avatar" 
+                     class="w-10 h-10 rounded-full border-2 border-white">
+                {% endif %}
+
+                <span class="text-lg font-semibold">{{ voter_name }}</span>
+                <a href="{{ url_for('voter_bp.logout') }}" class="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700">Logout</a>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="flex-grow flex justify-center p-8">
+        <div class="max-w-5xl w-full grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+            <!-- Ongoing Elections Card -->
+            <div class="bg-[#FF9933] text-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">Ongoing Elections</h3>
+                <div class="space-y-3">
+                    {% for election in ongoing_elections %}
+                        <div class="bg-white text-black p-3 rounded-lg flex justify-between items-center">
+                            <p class="font-medium">{{ election.name }} - Ends: {{ election.end_time }}</p>
+                            {% if election._id|string in voted_election_ids %}
+                                <a href="{{ url_for('voter_bp.voter_election_results', election_id=election._id) }}" class="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700">
+                                    View Results
+                                </a>
+                            {% else %}
+                                <form action="{{ url_for('voter_bp.vote', election_id=election._id) }}" method="GET">
+                                    <button type="submit" class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                        Vote Now
+                                    </button>
+                                </form>
+                            {% endif %}
+                        </div>
+                    {% else %}
+                        <p class="text-white">No ongoing elections.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+            <!-- Upcoming Elections Card -->
+            <div class="bg-[#138808] text-white p-6 rounded-lg shadow-lg">
+                <h3 class="text-xl font-semibold mb-4">Upcoming Elections</h3>
+                <div class="space-y-3">
+                    {% for election in upcoming_elections %}
+                        <p class="bg-white text-black p-3 rounded-lg">{{ election.name }} - Starts: {{ election.start_time }}</p>
+                    {% else %}
+                        <p class="text-white">No upcoming elections.</p>
+                    {% endfor %}
+                </div>
+            </div>
+
+        </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p class="text-sm">Powered by Election Commission of India</p>
+    </footer>
+
+    <!-- Image Modal -->
+    <div id="imageModal" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+        <div class="relative bg-white p-4 rounded-lg shadow-lg">
+            <button onclick="closeImageModal()" class="absolute top-2 right-2 text-red-500 text-xl font-bold">&times;</button>
+            <img id="modalImage" src="" class="max-w-full h-auto rounded-lg">
+        </div>
+    </div>
+
+    <!-- JavaScript for Image Modal -->
+    <script>
+        function showImageModal(imageSrc) {
+            document.getElementById('modalImage').src = imageSrc;
+            document.getElementById('imageModal').classList.remove('hidden');
+        }
+
+        function closeImageModal() {
+            document.getElementById('imageModal').classList.add('hidden');
+        }
+    </script>
+
+</body>
+</html>

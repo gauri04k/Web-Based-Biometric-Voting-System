@@ -1,0 +1,4 @@
+install dependancies =  pip install -r requirements.txt
+
+To run the app - flask run or python app.py
+localhost link - http://127.0.0.1:5000

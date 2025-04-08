@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>About Us - Voting System</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="bg-gray-100 font-sans">
+    
+    
+    <nav class="bg-blue-700 text-white py-4 px-6 flex justify-between items-center shadow-md">
+        <h1 class="text-2xl font-bold">Voting System</h1>
+        <div class="flex gap-4">
+            <a href="{{ url_for('home') }}" class="hover:underline">Home</a>
+            <a href="{{ url_for('voter_bp.login') }}" class="hover:underline">Voter Login</a>
+            <a href="{{ url_for('contact') }}" class="hover:underline">Contact</a>
+        </div>
+    </nav>
+
+    
+    <div class="max-w-4xl mx-auto my-10 p-6 bg-white shadow-lg rounded-lg">
+        <h2 class="text-3xl font-bold text-center text-gray-800 mb-4">About Our Voting System</h2>
+        <p class="text-gray-600 text-lg text-center">
+            Our **Facial Recognition-Based Voting System** is designed to provide a **secure, efficient, and transparent** election process. Using **advanced facial recognition technology**, we ensure only **registered voters** can cast their votes.
+        </p>
+        
+        <div class="mt-6 space-y-4">
+            <div class="flex gap-4 items-center">
+                <span class="text-blue-600 text-2xl">✔️</span>
+                <p class="text-gray-700">Facial recognition eliminates identity fraud.</p>
+            </div>
+            <div class="flex gap-4 items-center">
+                <span class="text-blue-600 text-2xl">✔️</span>
+                <p class="text-gray-700">Secure and encrypted authentication.</p>
+            </div>
+            <div class="flex gap-4 items-center">
+                <span class="text-blue-600 text-2xl">✔️</span>
+                <p class="text-gray-700">User-friendly interface for easy access.</p>
+            </div>
+        </div>
+    </div>
+
+    <footer class="bg-gray-800 text-white text-center py-4">
+        <p>&copy; 2025 Voting System. All rights reserved.</p>
+        <p class="text-sm">Built with ❤️ by KodeNeurons</p>
+    </footer>
+
+</body>
+</html>

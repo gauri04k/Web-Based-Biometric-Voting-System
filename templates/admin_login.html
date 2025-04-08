@@ -1,0 +1,41 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+</head>
+<body class="flex items-center justify-center min-h-screen bg-gradient-to-r from-orange-500 to-green-500">
+
+    <div class="bg-white p-8 rounded-lg shadow-lg w-full max-w-md text-center border-t-4 border-orange-600">
+       
+        <!-- Updated Icon (Ashoka Chakra) -->
+        <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQte6cD-0WybkWfC3sbW6K2j6rUmtEEcRPGJw&s" 
+            alt="Ashoka Chakra" class="w-20 mx-auto mb-4">
+
+        <!-- Heading -->
+        <h1 class="text-2xl font-bold text-gray-800 font-serif">Admin Login</h1>
+        <p class="text-gray-600 mt-2">Secure access to manage elections and verify voters.</p>
+
+        <!-- Login Form -->
+        <form action="/admin/login" method="POST" class="mt-6 space-y-4">
+            <input type="email" name="email" placeholder="Enter email" required 
+                class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+
+            <input type="password" name="password" placeholder="Enter password" required 
+                class="w-full px-4 py-3 border rounded-lg focus:outline-none focus:ring-2 focus:ring-orange-500">
+
+            <button type="submit" 
+                class="w-full bg-orange-600 text-white py-3 rounded-lg text-lg font-semibold hover:bg-orange-700 transition">
+                🔑 Login
+            </button>
+        </form>
+
+        
+    </div>
+
+</body>
+</html>
