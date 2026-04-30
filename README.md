@@ -94,7 +94,7 @@ Developed collaboratively by **Shoyeb Chaudhari** and **Gauri Kapadnis**, combin
 - **Gauri Kapadnis**
 
 ## 🔗 Repository
-
+https://github.com/gauri04k/Web-Based-Biometric-Voting-System
 https://github.com/ShoyebChaudhari/Web-Based-Biometric-Voting-System
 
 ## 📜 License
