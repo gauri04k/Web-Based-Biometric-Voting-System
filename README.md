@@ -64,10 +64,8 @@ python app.py
 ```
 
 Open your browser and visit:
+https://www.youtube.com/watch?v=8mpMi6NXxqg
 
-```bash
-http://127.0.0.1:5000
-```
 
 ## 📌 Modules
 
